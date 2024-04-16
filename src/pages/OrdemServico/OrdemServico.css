@@ -1,0 +1,17 @@
+.ordem-servico-container {
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .ordem-servico-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .ordem-servico-form input[type="file"] {
+    background-color: transparent;
+    border: 1px solid #888;
+  }
+  

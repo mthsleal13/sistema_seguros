@@ -1,0 +1,12 @@
+.produto-container {
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .produto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  

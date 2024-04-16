@@ -1,0 +1,12 @@
+.cliente-container {
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .cliente-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
