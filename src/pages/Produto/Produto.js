@@ -1,14 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Produto() {
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
   const [preco, setPreco] = useState('');
+  const [produtos, setProdutos] = useState([]);
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/produtos');
+        setProdutos(response.data);
+      } catch (error) {
+        console.error('Erro ao obter produtos:', error);
+      }
+    };
+
+    fetchProdutos();
+  }, []);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aqui você poderia adicionar a lógica para enviar os dados para o backend
-    alert("Produto cadastrado com sucesso!");
+    try {
+      await axios.post('http://localhost:3000/produtos', {
+        nome,
+        descricao,
+        preco
+      });
+      alert("Produto cadastrado com sucesso!");
+      setNome('');
+      setDescricao('');
+      setPreco('');
+      // Atualiza a lista de produtos após cadastrar um novo produto
+      fetchProdutos();
+    } catch (error) {
+      console.error('Erro ao cadastrar produto:', error);
+      alert("Erro ao cadastrar produto. Verifique o console para mais detalhes.");
+    }
+  };
+
+  const fetchProdutos = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/produtos');
+      setProdutos(response.data);
+    } catch (error) {
+      console.error('Erro ao obter produtos:', error);
+    }
   };
 
   return (
@@ -42,6 +80,15 @@ function Produto() {
         </div>
         <button type="submit">Cadastrar Produto</button>
       </form>
+
+      <h2>Produtos Cadastrados</h2>
+      <ul>
+        {produtos.map(produto => (
+          <li key={produto.id}>
+            <strong>{produto.nome}</strong> - {produto.descricao} - Preço: R$ {produto.preco}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
