@@ -1,37 +1,42 @@
 /* Dashboard.css */
+
+/* Estilos para o contêiner principal do dashboard */
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    min-height: 100vh;
-    background-color: #121212; /* Cor de fundo escuro */
-  }
-  
-  .dashboard-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .dashboard-link {
-    padding: 15px 25px;
-    border-radius: 8px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    transition: transform 0.2s, background-color 0.2s;
-    font-weight: bold;
-  }
-  
-  .dashboard-link:hover {
-    transform: scale(1.05);
-    background-color: #555;
-  }
-  
-  h2 {
-    color: #ddd;
-    margin-bottom: 20px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  background-color: #ffffff; /* Cor de fundo */
+}
+
+/* Estilos para a lista de links do dashboard */
+.dashboard-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Estilos para cada link individual no dashboard */
+.dashboard-link {
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #007bff; /* Cor de fundo do botão */
+  color: #000000; /* Cor do texto */
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.2s;
+  font-size: 20px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+}
+
+/* Estilos quando o mouse está sobre o link */
+.dashboard-link:hover {
+  transform: scale(1.05);
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilos para o título do dashboard */
+h2 {
+  color: #ddd; /* Cor do texto do título */
+}

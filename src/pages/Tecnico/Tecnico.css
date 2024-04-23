@@ -1,12 +1,53 @@
 .tecnico-container {
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  .tecnico-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  background-color: #ffffff; /* Cor de fundo */
+}
+
+.tecnico-form {
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 8px; /* Borda arredondada */
+  background-color: #fcfcfc; /* Cor de fundo */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.383); /* Sombra suave */
+}
+
+.tecnico-input {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.tecnico-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tecnico-button:hover {
+  background-color: #0056b3;
+}
+
+.tecnico-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.tecnico-form label {
+  color: #000000;
+}

@@ -1,12 +1,59 @@
+/* Estilos para o contêiner do formulário do cliente */
 .cliente-container {
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  .cliente-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  background-color: #ffffff; /* Cor de fundo */
+}
+
+/* Estilos para o formulário do cliente */
+.cliente-form {
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 8px; /* Borda arredondada */
+  background-color: #fcfcfc; /* Cor de fundo */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.383); /* Sombra suave */
+}
+
+/* Estilos para os campos do formulário */
+.cliente-input {
+  width: 90%; /* Largura total */
+  padding: 12px; /* Espaçamento interno */
+  margin-bottom: 20px; /* Espaçamento inferior */
+  border: 1px solid #ced4da; /* Borda sólida */
+  border-radius: 4px; /* Borda arredondada */
+  font-size: 16px; /* Tamanho da fonte */
+  transition: border-color 0.3s ease; /* Transição suave da cor da borda */
+  background-color: #ffffff; /* Cor de fundo branco */
+  color: #000000; /* Cor do texto preto */
+}
+/* Estilos para os labels do formulário */
+.cliente-form label {
+  color: #000000; /* Cor do texto preto */
+}
+
+/* Estilos para o botão do formulário */
+.cliente-button {
+  width: 100%; /* Largura total */
+  padding: 12px; /* Espaçamento interno */
+  background-color: #007bff; /* Cor de fundo */
+  border: none; /* Sem borda */
+  border-radius: 4px; /* Borda arredondada */
+  font-size: 18px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  color: #000000; 
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+}
+
+/* Estilos de hover para o botão do formulário */
+.cliente-button:hover {
+  background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos para os campos do formulário quando em foco */
+.cliente-input:focus {
+  outline: none; /* Remover contorno padrão */
+  border-color: #007bff; /* Cor da borda quando em foco */
+}

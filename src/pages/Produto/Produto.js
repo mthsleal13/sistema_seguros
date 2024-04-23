@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import './Produto.css'; // Importa o arquivo de estilos CSS
+
 function Produto() {
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
@@ -19,6 +21,13 @@ function Produto() {
 
     fetchProdutos();
   }, []);
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    // Verifica se o valor inserido contém apenas números, vírgulas e pontos
+    const newValue = value.replace(/[^\d.,]/g, '');
+    setPreco(newValue);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,12 +59,13 @@ function Produto() {
   };
 
   return (
-    <div>
+    <div className="produto-container">
       <h2>Cadastro de Produto</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="produto-form" onSubmit={handleSubmit}>
         <div>
           <label>Nome do Produto:</label>
           <input
+            className="cliente-input" // Adiciona a classe de estilo para o input
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
@@ -65,6 +75,7 @@ function Produto() {
         <div>
           <label>Descrição:</label>
           <textarea
+            className="cliente-input" // Adiciona a classe de estilo para a textarea
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
           />
@@ -72,13 +83,14 @@ function Produto() {
         <div>
           <label>Preço:</label>
           <input
+            className="cliente-input" // Adiciona a classe de estilo para o input
             type="text"
             value={preco}
-            onChange={(e) => setPreco(e.target.value)}
+            onChange={handleChange}
             required
           />
         </div>
-        <button type="submit">Cadastrar Produto</button>
+        <button className="cliente-button" type="submit">Cadastrar Produto</button>
       </form>
 
       <h2>Produtos Cadastrados</h2>
