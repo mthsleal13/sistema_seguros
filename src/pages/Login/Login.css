@@ -1,13 +1,91 @@
+/* Estilos para o contêiner do formulário de login */
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  
-  .login-form {
-    width: 90%;
-    max-width: 320px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fa; /* Cor de fundo */
+}
+
+/* Estilos para o título do formulário de login */
+.login-title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna */
+  color: #000000; /* Cor do texto */
+  margin-bottom: 20px;
+}
+
+/* Estilos para o formulário de login */
+.login-form {
+  width: 400px;
+  padding: 40px;
+  background-color: #ffffff; /* Cor de fundo */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.39); /* Sombra suave */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+}
+
+/* Estilos para os campos do formulário */
+.login-form input {
+  width: 200%; /* Largura total */
+  padding: 18px; /* Espaçamento interno */
+  margin-bottom: 40px; /* Espaçamento inferior */
+  border: 1px solid #000000; /* Borda sólida preta */
+  border-radius: 4px; /* Borda arredondada */
+  font-size: 16px; /* Tamanho da fonte */
+  transition: border-color 0.3s ease; /* Transição suave da cor da borda */
+  background-color: #ffffff; /* Cor de fundo branco */
+  color: #000000; /* Cor do texto preto */
+  margin-left: -85px; /* Mover o input para a esquerda */
+}
+
+/* Estilos para o botão do formulário */
+.login-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold; /* Adicionando negrito */
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos para o grupo de formulário (por exemplo, campo de senha com o botão de alternância) */
+.form-group {
+  position: relative; /* Torna o contêiner do campo de senha relativo */
+}
+
+/* Estilos para o botão de alternância de senha */
+.password-toggle {
+  position: absolute;
+  right: -105px;
+  top: 85%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #000000;
+}
+
+/* Estilos de hover para o botão de alternância de senha */
+.password-toggle:hover {
+  background-color: transparent; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilos de hover para o botão de login */
+.login-button:hover {
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilos para os campos do formulário quando em foco */
+.login-form input:focus {
+  outline: none; /* Remover contorno padrão */
+  box-shadow: none; /* Remover sombra em foco */
+  border-color: #007bff; /* Cor da borda quando em foco */
+}

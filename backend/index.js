@@ -1,6 +1,7 @@
 // Importando os módulos necessários
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors');
 
 // Inicializando o aplicativo Express
 const app = express();
@@ -16,6 +17,8 @@ db.serialize(() => {
     db.run("CREATE TABLE IF NOT EXISTS produtos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, descricao TEXT, preco REAL)");
     db.run("CREATE TABLE IF NOT EXISTS ordens_de_servico (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, fotos TEXT)");
 });
+
+app.use(cors());
 
 // Middleware para permitir o uso de JSON no corpo das solicitações
 app.use(express.json());
@@ -33,6 +36,17 @@ app.post('/clientes', (req, res) => {
     });
 });
 
+app.get('/clientes', (req, res) => {
+    db.all("SELECT * FROM clientes", (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
 // Rotas para cadastro de técnicos
 app.post('/tecnicos', (req, res) => {
     const { nome, email, especialidade } = req.body;
@@ -42,6 +56,17 @@ app.post('/tecnicos', (req, res) => {
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
             res.json({ message: 'Técnico cadastrado com sucesso', id: this.lastID });
+        }
+    });
+});
+
+app.get('/tecnicos', (req, res) => {
+    db.all("SELECT * FROM tecnicos", (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.json(rows);
         }
     });
 });
@@ -59,6 +84,17 @@ app.post('/produtos', (req, res) => {
     });
 });
 
+app.get('/produtos', (req, res) => {
+    db.all("SELECT * FROM produtos", (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
 // Rotas para cadastro de ordens de serviço
 app.post('/ordens_de_servico', (req, res) => {
     const { descricao, fotos } = req.body;
@@ -68,6 +104,17 @@ app.post('/ordens_de_servico', (req, res) => {
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
             res.json({ message: 'Ordem de serviço cadastrada com sucesso', id: this.lastID });
+        }
+    });
+});
+
+app.get('/ordens_de_servico', (req, res) => {
+    db.all("SELECT * FROM ordens_de_servico", (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.json(rows);
         }
     });
 });

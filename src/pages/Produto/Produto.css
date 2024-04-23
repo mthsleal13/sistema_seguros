@@ -1,12 +1,60 @@
+/* Estilos para o contêiner da página de produtos */
 .produto-container {
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  .produto-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  background-color: #ffffff; /* Cor de fundo */
+}
+
+/* Estilos para o formulário do produto */
+.produto-form {
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 8px; /* Borda arredondada */
+  background-color: #fcfcfc; /* Cor de fundo */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.383); /* Sombra suave */
+}
+
+/* Estilos para os campos do formulário */
+.produto-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  background-color: #ffffff;
+  color: #000000;
+}
+s
+/* Estilos para o botão do formulário */
+.produto-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos de hover para o botão do formulário */
+.produto-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para os campos do formulário quando em foco */
+.produto-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Estilos para os labels do formulário */
+.produto-form label {
+  color: #000000;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './OrdemServico.css'; // Importe o arquivo CSS com os estilos da ordem de serviço
 
 function OrdemServico() {
   const [descricao, setDescricao] = useState('');
@@ -34,19 +35,20 @@ function OrdemServico() {
 
   const handleImageChange = (event) => {
     // Converte a lista de arquivos para um array e atualiza o estado
-    setImagens([...event.target.files]);
+    setImagens(Array.from(event.target.files));
   };
 
   return (
-    <div>
+    <div className="ordem-servico-container">
       <h2>Ordem de Serviço</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="ordem-servico-form" onSubmit={handleSubmit}>
         <div>
           <label>Descrição:</label>
           <textarea
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
             required
+            className="ordem-servico-input"
           />
         </div>
         <div>
@@ -55,15 +57,15 @@ function OrdemServico() {
             type="file"
             multiple
             onChange={handleImageChange}
+            className="ordem-servico-input"
           />
         </div>
-        {/* Exibe as imagens selecionadas */}
         <div>
           {imagens.map((imagem, index) => (
-            <img key={index} src={URL.createObjectURL(imagem)} alt={`Imagem ${index}`} style={{ maxWidth: '200px', maxHeight: '200px', marginRight: '10px' }} />
+            <img key={index} src={URL.createObjectURL(imagem)} alt={`Imagem ${index}`} className="ordem-servico-image" />
           ))}
         </div>
-        <button type="submit">Enviar</button>
+        <button type="submit" className="ordem-servico-button">Enviar</button>
       </form>
     </div>
   );
