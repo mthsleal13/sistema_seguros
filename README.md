@@ -68,4 +68,27 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# sistema_seguros
+
+# How can I use?
+### First of all, we have to clone the repository into our computer, you can do this using the following commands:
+
+```bash 
+$ git clone git@github.com:mthsleal13/sistema_seguros.git
+$ cd sistemas_seguros
+```
+
+### To run the local server for the backend:
+```bash 
+$ cd backend
+$ node index.js
+```
+Now the backend is running in http://localhost:3000 and you can make requisitions for it.
+
+### To run the React application:
+Tou need to open a new terminal in the app directory and run the following commandas:
+```bash 
+$ npm start
+```
+So, the app will open in your browser in the http://localhost:3001 to you use the app in your own computer.
+
+## Thanks!!!
