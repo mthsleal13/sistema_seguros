@@ -13,17 +13,16 @@ const db = new sqlite3.Database(':memory:');
 // Criando as tabelas
 db.serialize(() => {
     db.run("CREATE TABLE IF NOT EXISTS clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT, telefone TEXT)");
-    db.run("CREATE TABLE IF NOT EXISTS tecnicos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT, especialidade TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS tecnicos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT, telefone TEXT)");
     db.run("CREATE TABLE IF NOT EXISTS produtos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, descricao TEXT, preco REAL)");
-    db.run("CREATE TABLE IF NOT EXISTS ordens_de_servico (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, fotos TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS ordens_de_servico (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, tecnico TEXT, descricao TEXT)");
 });
 
 app.use(cors());
 
-// Middleware para permitir o uso de JSON no corpo das solicitações
 app.use(express.json());
 
-// Rotas para cadastro de clientes
+
 app.post('/clientes', (req, res) => {
     const { nome, email, telefone } = req.body;
     db.run("INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?)", [nome, email, telefone], function (err) {
@@ -47,10 +46,10 @@ app.get('/clientes', (req, res) => {
     });
 });
 
-// Rotas para cadastro de técnicos
+
 app.post('/tecnicos', (req, res) => {
-    const { nome, email, especialidade } = req.body;
-    db.run("INSERT INTO tecnicos (nome, email, especialidade) VALUES (?, ?, ?)", [nome, email, especialidade], function (err) {
+    const { nome, email, telefone } = req.body;
+    db.run("INSERT INTO tecnicos (nome, email, telefone) VALUES (?, ?, ?)", [nome, email, telefone], function (err) {
         if (err) {
             console.error(err.message);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -71,7 +70,7 @@ app.get('/tecnicos', (req, res) => {
     });
 });
 
-// Rotas para cadastro de produtos
+
 app.post('/produtos', (req, res) => {
     const { nome, descricao, preco } = req.body;
     db.run("INSERT INTO produtos (nome, descricao, preco) VALUES (?, ?, ?)", [nome, descricao, preco], function (err) {
@@ -95,10 +94,10 @@ app.get('/produtos', (req, res) => {
     });
 });
 
-// Rotas para cadastro de ordens de serviço
+
 app.post('/ordens_de_servico', (req, res) => {
-    const { descricao, fotos } = req.body;
-    db.run("INSERT INTO ordens_de_servico (descricao, fotos) VALUES (?, ?)", [descricao, fotos], function (err) {
+    const { nome, tecnico, descricao } = req.body;
+    db.run("INSERT INTO ordens_de_servico (nome, tecnico, descricao) VALUES (?, ?, ?)", [nome, tecnico, descricao], function (err) {
         if (err) {
             console.error(err.message);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -107,6 +106,7 @@ app.post('/ordens_de_servico', (req, res) => {
         }
     });
 });
+
 
 app.get('/ordens_de_servico', (req, res) => {
     db.all("SELECT * FROM ordens_de_servico", (err, rows) => {
@@ -119,7 +119,7 @@ app.get('/ordens_de_servico', (req, res) => {
     });
 });
 
-// Iniciando o servidor
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

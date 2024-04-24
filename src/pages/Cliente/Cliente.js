@@ -77,7 +77,7 @@ function Cliente() {
       <h2>Clientes Cadastrados</h2>
       <ul>
         {clientes.map(cliente => (
-          <li key={cliente.id}>{cliente.nome} - {cliente.email} - {cliente.telefone}</li>
+          <li key={cliente.id}> <strong>Nome:</strong>{cliente.nome} - <strong>Email:</strong>{cliente.email} - <strong>Telefone:</strong>{cliente.telefone}</li>
         ))}
       </ul>
     </div>

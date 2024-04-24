@@ -89,3 +89,7 @@
   box-shadow: none; /* Remover sombra em foco */
   border-color: #007bff; /* Cor da borda quando em foco */
 }
+
+li {
+  color: #000000;
+}

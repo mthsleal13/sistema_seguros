@@ -76,10 +76,13 @@ function Tecnico() {
 
       <h2>Técnicos Cadastrados</h2>
       <ul>
-        {tecnicos.map(tecnico => (
-          <li key={tecnico.id}>{tecnico.nome} - {tecnico.email} - {tecnico.telefone}</li>
-        ))}
-      </ul>
+  {tecnicos.map(tecnico => (
+    <li key={tecnico.id}>
+      <strong>Nome:</strong> {tecnico.nome} - <strong>Email:</strong>{tecnico.email} - <strong>Telefone:</strong>{tecnico.telefone}
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 }

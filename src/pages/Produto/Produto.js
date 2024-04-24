@@ -97,7 +97,7 @@ function Produto() {
       <ul>
         {produtos.map(produto => (
           <li key={produto.id}>
-            <strong>{produto.nome}</strong> - {produto.descricao} - Preço: R$ {produto.preco}
+            <strong>Nome:</strong>{produto.nome} - <strong>Descrição:</strong>{produto.descricao} - <strong>Preço: R$</strong> {produto.preco}
           </li>
         ))}
       </ul>

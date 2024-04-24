@@ -1,47 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './OrdemServico.css'; // Importe o arquivo CSS com os estilos da ordem de serviço
 
 function OrdemServico() {
+  const [nome, setNome] = useState('');
+  const [tecnico, setTecnico] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [imagens, setImagens] = useState([]);
+  const [ordensServico, setOrdensServico] = useState([]);
+
+  const fetchOrdensServico = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/ordens_de_servico');
+      setOrdensServico(response.data);
+      console.log(response.data)
+      console.log(ordensServico)
+    } catch (error) {
+      console.error('Erro ao obter ordens de serviço:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchOrdensServico();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Cria um objeto FormData para enviar os dados do formulário, incluindo as imagens
-      const formData = new FormData();
-      formData.append('descricao', descricao);
-      imagens.forEach((imagem, index) => {
-        formData.append(`imagem${index}`, imagem);
-      });
-
-      // Envia a requisição POST para o backend com os dados do formulário
-      await axios.post('http://localhost:3000/ordens-servico', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
+      const data = { nome, tecnico, descricao }; // Criar um objeto com os dados
+      await axios.post('http://localhost:3000/ordens_de_servico', data);
+      
       alert("Ordem de Serviço enviada com sucesso!");
-      // Limpa os campos do formulário após o envio bem-sucedido
+      setNome('');
+      setTecnico('');
       setDescricao('');
-      setImagens([]);
+      
+      fetchOrdensServico(); // Atualiza a lista de ordens de serviço após o envio bem-sucedido
     } catch (error) {
       console.error('Erro ao enviar ordem de serviço:', error);
       alert("Erro ao enviar ordem de serviço. Verifique o console para mais detalhes.");
     }
   };
-
-  const handleImageChange = (event) => {
-    // Converte a lista de arquivos para um array e atualiza o estado
-    setImagens(Array.from(event.target.files));
-  };
+  
 
   return (
     <div className="ordem-servico-container">
       <h2>Ordem de Serviço</h2>
       <form className="ordem-servico-form" onSubmit={handleSubmit}>
+        <div>
+          <label>Nome:</label>
+          <input
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+            className="ordem-servico-input"
+          />
+        </div>
+        <div>
+          <label>Técnico:</label>
+          <input
+            value={tecnico}
+            onChange={(e) => setTecnico(e.target.value)}
+            required
+            className="ordem-servico-input"
+          />
+        </div>
         <div>
           <label>Descrição:</label>
           <textarea
@@ -51,22 +73,17 @@ function OrdemServico() {
             className="ordem-servico-input"
           />
         </div>
-        <div>
-          <label>Fotos:</label>
-          <input
-            type="file"
-            multiple
-            onChange={handleImageChange}
-            className="ordem-servico-input"
-          />
-        </div>
-        <div>
-          {imagens.map((imagem, index) => (
-            <img key={index} src={URL.createObjectURL(imagem)} alt={`Imagem ${index}`} className="ordem-servico-image" />
-          ))}
-        </div>
         <button type="submit" className="ordem-servico-button">Enviar</button>
       </form>
+
+      <h2>Ordens de serviço abertas</h2>
+      <ul>
+        {ordensServico.map(ordem => (
+          <li key={ordem.id}>
+            <strong>Nome:</strong> {ordem.nome} - <strong>Técnico:</strong> {ordem.tecnico} - <strong>Descrição:</strong> {ordem.descricao}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
