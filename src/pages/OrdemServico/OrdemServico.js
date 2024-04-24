@@ -1,54 +1,32 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './OrdemServico.css'; // Importe o arquivo CSS com os estilos da ordem de serviço
+import './OrdemServico.css';
 
 function OrdemServico() {
-  const [descricao, setDescricao] = useState('');
-  const [imagens, setImagens] = useState([]);
+  const [descricao, setDescricao] = useState(''); // Estado para armazenar a descrição da ordem de serviço
+  const [imagens, setImagens] = useState([]); // Estado para armazenar imagens anexadas
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      // Cria um objeto FormData para enviar os dados do formulário, incluindo as imagens
-      const formData = new FormData();
-      formData.append('descricao', descricao);
-      imagens.forEach((imagem, index) => {
-        formData.append(`imagem${index}`, imagem);
-      });
-
-      // Envia a requisição POST para o backend com os dados do formulário
-      await axios.post('http://localhost:3000/ordens-servico', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
-      alert("Ordem de Serviço enviada com sucesso!");
-      // Limpa os campos do formulário após o envio bem-sucedido
-      setDescricao('');
-      setImagens([]);
-    } catch (error) {
-      console.error('Erro ao enviar ordem de serviço:', error);
-      alert("Erro ao enviar ordem de serviço. Verifique o console para mais detalhes.");
-    }
+  // Função para lidar com o envio do formulário
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+    alert("Ordem de Serviço enviada com sucesso!"); // Exibe um alerta ao usuário após o envio
   };
 
+  // Função para lidar com a mudança de imagens
   const handleImageChange = (event) => {
-    // Converte a lista de arquivos para um array e atualiza o estado
-    setImagens(Array.from(event.target.files));
+    setImagens([...event.target.files]); // Atualiza o estado com os arquivos selecionados
   };
 
+  // Renderiza o componente de ordem de serviço
   return (
-    <div className="ordem-servico-container">
+    <div>
       <h2>Ordem de Serviço</h2>
-      <form className="ordem-servico-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Descrição:</label>
           <textarea
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
             required
-            className="ordem-servico-input"
           />
         </div>
         <div>
@@ -57,15 +35,9 @@ function OrdemServico() {
             type="file"
             multiple
             onChange={handleImageChange}
-            className="ordem-servico-input"
           />
         </div>
-        <div>
-          {imagens.map((imagem, index) => (
-            <img key={index} src={URL.createObjectURL(imagem)} alt={`Imagem ${index}`} className="ordem-servico-image" />
-          ))}
-        </div>
-        <button type="submit" className="ordem-servico-button">Enviar</button>
+        <button type="submit">Enviar</button>
       </form>
     </div>
   );

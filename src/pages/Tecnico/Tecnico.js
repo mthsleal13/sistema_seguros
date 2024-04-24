@@ -1,40 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Tecnico.css';
+import axios from 'axios'; // Importa o axios para fazer requisições HTTP
+import './Tecnico.css'; // Importa o arquivo de estilo CSS especifico para o componente Técnico
 
 function Tecnico() {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
     telefone: ''
-  });
-  const [tecnicos, setTecnicos] = useState([]);
+  }); // Estado inicial para o formulário de cadastro de técnicos
+  const [tecnicos, setTecnicos] = useState([]); // Estado para armazenar a lista de técnicos cadastrados
 
   useEffect(() => {
     const fetchTecnicos = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/tecnicos');
-        setTecnicos(response.data);
+        const response = await axios.get('http://localhost:3000/tecnicos'); // Requisição GET para buscar os técnicos
+        setTecnicos(response.data); // Atualiza o estado com os dados recebidos
       } catch (error) {
-        console.error('Erro ao obter técnicos:', error);
+        console.error('Erro ao obter técnicos:', error); // Log de erro se a requisição falhar
       }
     };
 
-    fetchTecnicos();
+    fetchTecnicos(); // Chama a função para buscar os técnicos ao carregar o componente 
   }, []);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Previne o comportamento padrão do formulário
     try {
-      await axios.post('http://localhost:3000/tecnicos', formData);
+      await axios.post('http://localhost:3000/tecnicos', formData); // Requisição POST para cadastrar um novo técnico
       alert("Técnico cadastrado com sucesso!");
       setFormData({
         nome: '',
         email: '',
         telefone: ''
-      });
+      }); // Reseta o formulário após o cadastro
     } catch (error) {
-      console.error('Erro ao cadastrar técnico:', error);
+      console.error('Erro ao cadastrar técnico:', error); // Log de erro se o cadastro falhar
       alert("Erro ao cadastrar técnico. Verifique o console para mais detalhes.");
     }
   };
@@ -52,7 +52,7 @@ function Tecnico() {
     setFormData(prevState => ({
       ...prevState,
       [name]: newValue
-    }));
+    })); // Atualiza o estado do formulário com os novos valores formatados
   };
 
   return (

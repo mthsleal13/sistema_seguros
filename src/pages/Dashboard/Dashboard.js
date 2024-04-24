@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Dashboard.css'; // Importando o CSS específico para Dashboard
+import { Link } from 'react-router-dom'; // Importa o componente Link do react-router para navegação
+import './Dashboard.css'; 
 
 function Dashboard() {
+  // Renderiza o componente Dashboard
   return (
     <div className="dashboard-container">
       <h2>Dashboard</h2>

@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate para programar redirecionamentos
 import './Login.css';
 
 function Login() {
-  const [credentials, setCredentials] = useState({ email: '', senha: '' });
+  const [credentials, setCredentials] = useState({ email: '', senha: '' }); // Estado para armazenar credenciais de usuário
   const [showPassword, setShowPassword] = useState(false); // Estado para controlar a exibição da senha
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook para navegar para outras rotas
 
+  // Função para manipular mudanças nos campos de entrada
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({ ...credentials, [name]: value });
+    const { name, value } = e.target; // Destruturação para obter nome e valor do campo
+    setCredentials({ ...credentials, [name]: value }); // Atualiza o estado de credenciais
   };
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Login realizado com:', credentials);
-    navigate('/dashboard');
+    event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+    console.log('Login realizado com:', credentials); // Log das credenciais para desenvolvimento/debug
+    navigate('/dashboard'); // Redireciona para o dashboard apos o Login
   };
 
-  // Função para alternar entre mostrar e ocultar a senha
+  // Função para alternar a visibilidade da senha
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  // Renderiza o componente de login
   return (
     <div className="login-container">
       <h2 className="login-title">Login</h2>
